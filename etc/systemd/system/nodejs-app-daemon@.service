@@ -1,0 +1,16 @@
+[Unit]
+Description=nodejs app daemon: %i
+After=network.target
+
+[Service]
+WorkingDirectory=/home/pi/nodejs_app_daemons/%i
+User=pi
+Group=pi
+Restart=always
+ExecStart=/usr/bin/node index.js
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=nodejs_app_daemon_%i
+
+[Install]
+WantedBy=multi-user.target
